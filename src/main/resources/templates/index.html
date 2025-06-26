@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NASA Astronomy Picture of the Day</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1 th:text="${apod.title}">NASA Picture of the Day</h1>
+    <div th:if="${apod.media_type} == 'image'">
+        <img th:src="${apod.hdurl}" alt="NASA APOD">
+    </div>
+    <div th:if="${apod.media_type} == 'video'">
+        <iframe width="800" height="450" th:src="${apod.url}" frameborder="0"></iframe>
+    </div>
+    <p><strong>Date:</strong> <span th:text="${apod.date}">2023-01-01</span></p>
+    <p th:text="${apod.explanation}">Explanation text here...</p>
+</body>
+</html>
