@@ -11,3 +11,4 @@ public record ApodResponse(
     String title,
     String url
 ) {}
+
