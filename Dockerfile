@@ -1,12 +1,14 @@
-FROM amazoncorretto:24
+FROM maven:3.9.10-eclipse-temurin-24-alpine AS builder
 
-RUN mkdir -p /home/app
+WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-ENV HOME=/home/app
-WORKDIR $HOME
+FROM eclipse-temurin:24-alpine
 
-COPY target/SpaceRestAPI-*.jar app.jar
-
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]

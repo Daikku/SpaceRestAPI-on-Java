@@ -7,13 +7,14 @@
 </head>
 <body>
     <h1 th:text="${apod.title}">NASA Picture of the Day</h1>
+    <p th:text="${apod.copyright}">Copyright</p>
     <div th:if="${apod.media_type} == 'image'">
         <img th:src="${apod.hdurl}" alt="NASA APOD">
     </div>
     <div th:if="${apod.media_type} == 'video'">
         <iframe width="800" height="450" th:src="${apod.url}" frameborder="0"></iframe>
     </div>
-    <p><strong>Date:</strong> <span th:text="${apod.date}">2023-01-01</span></p>
-    <p th:text="${apod.explanation}">Explanation text here...</p>
+    <p><strong>Date:</strong> <span th:text="${apod.date}" class="apon-date">2023-01-01</span></p>
+    <p th:text="${apod.explanation}" class="apon-explanation">Explanation text here...</p>
 </body>
 </html>
